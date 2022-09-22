@@ -26,16 +26,16 @@ clicked = [[-1 for _ in range(beats)] for _ in range(instruments)]
 bpm = 240
 playing = True
 active_length = 0
-active_beat = 1
+active_beat = 0
 beat_changed = True
 
 #         load in sounds
-hi_hat = mixer.Sound('sounds/808kit/hi hat (7).WAV')
-snare = mixer.Sound('sounds/808kit/snare (4).WAV')
-kick = mixer.Sound('sounds/808kit/kick (20).WAV')
-crash = mixer.Sound('sounds/808kit/cymbal (4).WAV')
-clap = mixer.Sound('sounds/808kit/clap (4).WAV')
-tom = mixer.Sound('sounds/808kit/tom (2).WAV')
+hi_hat = mixer.Sound('sounds/808kit/hi_hat7.WAV')
+snare = mixer.Sound('sounds/808kit/snare4.WAV')
+kick = mixer.Sound('sounds/808kit/kick20.WAV')
+crash = mixer.Sound('sounds/808kit/cymbal4.WAV')
+clap = mixer.Sound('sounds/808kit/clap4.WAV')
+tom = mixer.Sound('sounds/808kit/tom2.WAV')
 
 
 def play_notes():
@@ -68,10 +68,10 @@ def draw_grid(clicks, beat):
     screen.blit(kick_text, (30, 230))
     crash_text = label_font.render('Crash', True, white)
     screen.blit(crash_text, (30, 330))
-    hi_hat_text = label_font.render('Clap', True, white)
-    screen.blit(hi_hat_text, (30, 430))
-    hi_hat_text = label_font.render('Floor Tom', True, white)
-    screen.blit(hi_hat_text, (30, 530))
+    clap_text = label_font.render('Clap', True, white)
+    screen.blit(clap_text, (30, 430))
+    tom_text = label_font.render('Floor Tom', True, white)
+    screen.blit(tom_text, (30, 530))
     for i in range(instruments):
         pygame.draw.line(screen, gray, (0, (i * 100) + 100), (200, (i * 100) + 100), 3)
 
@@ -92,8 +92,8 @@ def draw_grid(clicks, beat):
                               ((HEIGHT - 200) // instruments)], 2, 5)
             boxes.append((rect, (i, j)))
 
-            active = pygame.draw.rect(screen, blue, [beat * ((WIDTH - 200)//beats) + 200, 0, ((WIDTH - 200)//beats),
-                                                     instruments * 100], 5, 3)
+        active = pygame.draw.rect(screen, blue, [beat * ((WIDTH - 200) // beats) + 200, 0, ((WIDTH - 200) // beats),
+                                                 instruments * 100], 5, 3)
     return boxes
 
 
